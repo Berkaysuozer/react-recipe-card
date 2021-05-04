@@ -1,32 +1,48 @@
 import './Card.css';
 import React, { useState } from 'react';
 
-export default function Card(props) {
-	const [isLiked, setLiked] = useState(false);
+class Card extends React.Component {
+	constructor() {
+		super();
 
-	let likeCount = 193;
+		this.state = {
+			isLiked: false,
+		};
+	}
 
-	return (
-		<div className="card">
-			<div className="card-header">
-				<div className="profile">
-					<span className="letter">{props.author[0]}</span>
+	Hearth = () => {
+		this.setState({ isLiked: !this.state.isLiked });
+	};
+
+	render() {
+		return (
+			<div className="card">
+				<div className="card-header">
+					<div className="profile">
+						<span className="letter">{this.props.author[0]}</span>
+					</div>
+					<div className="card-title-group">
+						<h5 className="card-title">{this.props.title}</h5>
+						<div className="card-date">{this.props.date}</div>
+					</div>
 				</div>
-				<div className="card-title-group">
-					<h5 className="card-title">{props.title}</h5>
-					<div className="card-date">{props.date}</div>
+				<img className="card-image" src={this.props.image} alt="Logo" />
+				<div className="card-text">{this.props.description}</div>
+
+				<div className="card-like-bar" onClick={this.Hearth}>
+					<img
+						className="card-like-icon"
+						src={this.state.isLiked ? this.props.heartFill : this.props.heartOutline}
+						alt="Logo"
+					/>
+
+					<div className="like-text">
+						<b>{this.props.likeCount}</b> kişi bu tarifi beğendi.
+					</div>
 				</div>
 			</div>
-			<img className="card-image" src={props.image} alt="Logo" />
-			<div className="card-text">{props.description}</div>
-
-			<div className="card-like-bar" onClick={() => setLiked(!isLiked)}>
-				<img className="card-like-icon" src={isLiked ? props.heartFill : props.heartOutline} alt="Logo" />
-
-				<div className="like-text">
-					<b>{likeCount}</b> kişi bu tarifi beğendi.
-				</div>
-			</div>
-		</div>
-	);
+		);
+	}
 }
+
+export default Card;

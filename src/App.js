@@ -15,9 +15,8 @@ function App() {
 
 		heartFill: heartFill,
 		heartOutline: heartOutline,
+		likeCount: '193',
 	};
-
-	
 
 	return (
 		<div className="App">
@@ -30,7 +29,7 @@ function App() {
 					date={recipeItem.date}
 					image={recipeItem.image}
 					description={recipeItem.description}
-					likeCount={193}
+					likeCount={recipeItem.likeCount}
 					isLiked={false}
 					heartFill={heartFill}
 					heartOutline={heartOutline}
